@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>جزئیات پست - نگاه به این رشته تغییر کند</title>
+    <title>جزئیات پست مدرسه ثامن - نگاه به این رشته تغییر کند</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -42,11 +42,11 @@
                 </div>
                 <div class="col-md-6 text-center text-md-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="btn btn-sm btn-outline-light" href="/assets/">خانه</a>
+                        <a class="btn btn-sm btn-outline-light" href="/">خانه</a>
                         <i class="fas fa-angle-double-left text-light mx-2"></i>
-                        <a class="btn btn-sm btn-outline-light" href="/assets/">بلاگ</a>
+                        <a class="btn btn-sm btn-outline-light" href="/blog">بلاگ</a>
                         <i class="fas fa-angle-double-left text-light mx-2"></i>
-                        <a class="btn btn-sm btn-outline-light disabled" href="/assets/">جزئیات پست</a>
+                        <a class="btn btn-sm btn-outline-light disabled" href="/blog/<%= blog.id %>">جزئیات پست</a>
                     </div>
                 </div>
             </div>
@@ -62,13 +62,13 @@
                 <div class="col-lg-12">
                     <div class="mb-5">
                         <div class="d-flex mb-2">
-                            <a class="text-secondary text-uppercase font-weight-medium" href="/assets/"><%= blog.day %> <%= blog.month %> </a>
+                            <div class="text-secondary text-uppercase font-weight-medium"><%= blog.day %> <%= blog.month %> </div>
                         </div>
                         <h1 class="section-title mb-3"><%= blog.title %></h1>
                     </div>
 
                     <div class="mb-5">
-                        <img class="img-fluid rounded w-100 mb-4" src="<%= blog.picture %>" alt="Image">
+                        <!-- <img class="img-fluid rounded w-100 mb-4" src="" alt="Image"> -->
                         <%- blog.bigtext %>
                     </div>
 

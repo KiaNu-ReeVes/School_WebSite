@@ -1,0 +1,36 @@
+<div class="main-sidebar sidebar-style-2">
+  <aside id="sidebar-wrapper">
+    <div class="sidebar-brand">
+      <a href="/"> <img alt="تصویر" src="/assets/img/logored.png" class="header-logo"></a>
+    </div>
+    <div class="sidebar-user">
+      <div class="sidebar-user-details">
+        <div class="user-name"><%= userinfo.username %></div>
+        <div class="user-role text-uppercase"><%= userinfo.group %></div>
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="menu-header">اصلی</li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"><i data-feather="home"></i><span>پیشخوان</span></a>
+        <ul class="dropdown-menu">
+          <li class="active"><a class="nav-link" href="/">خانه</a></li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>فایل ها</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="/chat.html">تمامی فایل ها</a></li>
+          <li><a class="nav-link" href="/portfolio.html">افزودن فایل جدید</a></li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"><i data-feather="briefcase"></i><span>بلاگ ها</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="/dashboard/blogs">تمامی بلاگ ها</a></li>
+          <li><a class="nav-link" href="/dashboard/blogs/new">افزودن بلاگ جدید</a></li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+</div>

@@ -21,9 +21,11 @@ module.exports = class Application {
         app.set('trust proxy', 1)
         app.use(cookieParser('MY SECRET'))
         app.use(session({
-            secret: 'woot',
-            resave: false, 
-            saveUninitialized: false}));
+          secret: 'woot',
+          resave: true,
+          saveUninitialized: true,
+          cookie: { secure: true, maxAge: 60000 }
+        }))
         app.use(flash());
     
     
