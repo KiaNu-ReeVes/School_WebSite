@@ -7,7 +7,6 @@ const connection = mysql.createConnection({
     database: 'school_website'
 });
 
-
 router.get('/dashboard', (req, res) => {
     if (req.signedCookies.remember_token) {
         connection.query("SELECT * FROM users WHERE remember_token = ?;", [req.signedCookies.remember_token], function (err, res2) {
@@ -29,5 +28,7 @@ router.get('/dashboard', (req, res) => {
         return res.redirect('/auth/login')
     }
 })
+
+router.use(require('./users/index'))
 
 module.exports = router

@@ -111,7 +111,7 @@ router.get('/dashboard/blogs/new', (req, res) => {
     }
 })
 
-router.get('/dashboard/blogs/delete', function (req, res) {
+router.post('/dashboard/blogs/delete', function (req, res) {
     if (req.query.id) {
         if (req.signedCookies.remember_token) {
             connection.query("SELECT * FROM users WHERE remember_token = ?;", [req.signedCookies.remember_token], function (err, res2) {

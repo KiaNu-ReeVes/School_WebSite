@@ -9,28 +9,59 @@
         <div class="user-role text-uppercase"><%= userinfo.group %></div>
       </div>
     </div>
-    <ul class="sidebar-menu">
-      <li class="menu-header">اصلی</li>
-      <li class="dropdown active">
-        <a href="/#" class="nav-link has-dropdown"><i data-feather="home"></i><span>پیشخوان</span></a>
-        <ul class="dropdown-menu">
-          <li class="active"><a class="nav-link" href="/">خانه</a></li>
-        </ul>
-      </li>
-      <li class="dropdown active">
-        <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>فایل ها</span></a>
-        <ul class="dropdown-menu">
-          <li><a class="nav-link" href="/chat.html">تمامی فایل ها</a></li>
-          <li><a class="nav-link" href="/portfolio.html">افزودن فایل جدید</a></li>
-        </ul>
-      </li>
-      <li class="dropdown active">
-        <a href="/#" class="nav-link has-dropdown"><i data-feather="briefcase"></i><span>بلاگ ها</span></a>
-        <ul class="dropdown-menu">
-          <li><a class="nav-link" href="/dashboard/blogs">تمامی بلاگ ها</a></li>
-          <li><a class="nav-link" href="/dashboard/blogs/new">افزودن بلاگ جدید</a></li>
-        </ul>
-      </li>
-    </ul>
+    <% if (userinfo.group == 'manager') { %>
+      <ul class="sidebar-menu">
+        <li class="menu-header">مدیریت</li>
+        <li class="dropdown active">
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="home"></i><span>پیشخوان</span></a>
+          <ul class="dropdown-menu">
+            <li class="active"><a class="nav-link" href="/dashboard">خانه</a></li>
+          </ul>
+        </li>
+        <li class="dropdown active">
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>فایل ها</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="/chat.html">تمامی فایل ها</a></li>
+            <li><a class="nav-link" href="/portfolio.html">افزودن فایل جدید</a></li>
+          </ul>
+        </li>
+        <li class="dropdown active">
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="briefcase"></i><span>بلاگ ها</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="/dashboard/blogs">تمامی بلاگ ها</a></li>
+            <li><a class="nav-link" href="/dashboard/blogs/new">افزودن بلاگ جدید</a></li>
+          </ul>
+        </li>
+        <li class="dropdown active">
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="user"></i><span>کادر مدرسه</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="/dashboard/users/list">لیست تمامی اکانت ها</a></li>
+            <li><a class="nav-link" href="/dashboard/users/list?group=student">لیست دانش اموزان</a></li>
+            <li><a class="nav-link" href="/dashboard/users/list?group=teacher">لیست معلمین</a></li>
+            <li><a class="nav-link" href="/dashboard/users/list?group=manager">لیست معاونین</a></li>
+            <li><a class="nav-link" href="/dashboard/users/new">افزودن اکانت</a></li>
+            <li><a class="nav-link" href="/dashboard/homework">تکالیف</a></li>
+          </ul>
+        </li>
+      </ul>
+    <% } else if (userinfo.group == 'teacher') { %>
+    <% } else if (userinfo.group == 'student') { %>
+      <ul class="sidebar-menu">
+        <li class="menu-header">دانش اموز</li>
+        <li class="dropdown active">
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="home"></i><span>پیشخوان</span></a>
+          <ul class="dropdown-menu">
+            <li class="active"><a class="nav-link" href="/dashboard">خانه</a></li>
+          </ul>
+        </li>
+        <li class="dropdown active">
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>فایل ها</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="/chat.html">تمامی فایل ها</a></li>
+            <li><a class="nav-link" href="/portfolio.html">افزودن فایل جدید</a></li>
+          </ul>
+        </li>
+      </ul>
+    <% } %>
   </aside>
 </div>

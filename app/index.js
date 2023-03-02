@@ -49,8 +49,7 @@ module.exports = class Application {
     }
     serverListen() {
         app.use(function(req, res){
-            // res.status(404).render('404');
-            res.send('<a href="/"><h1>Back</h1></a>')
+            res.status(404).render('404/404');
         });  
 
         app.listen(3000, (err) => {
