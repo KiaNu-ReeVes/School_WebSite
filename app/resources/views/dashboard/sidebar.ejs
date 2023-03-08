@@ -7,6 +7,22 @@
       <div class="sidebar-user-details">
         <div class="user-name"><%= userinfo.username %></div>
         <div class="user-role text-uppercase"><%= userinfo.group %></div>
+        <br>
+        <div class="btn btn btn-outline-danger" style="border-radius: 20px;width: 50%;" onclick="
+          $.post('/auth/exit', { })
+          .done(function(response) {
+            if (response.success) {
+              alert(response.message);
+              location.reload();
+            } else {
+              alert('Error: ' + response.message);
+            }
+          })
+          .fail(function(jqXHR, textStatus, errorThrown) {
+            alert('Error: ' + errorThrown);
+          });
+        ">خروج</div>
+        <br>
       </div>
     </div>
     <% if (userinfo.group == 'manager') { %>
@@ -21,8 +37,8 @@
         <li class="dropdown active">
           <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>فایل ها</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="/chat.html">تمامی فایل ها</a></li>
-            <li><a class="nav-link" href="/portfolio.html">افزودن فایل جدید</a></li>
+            <li><a class="nav-link" href="/dashboard/files">تمامی فایل ها</a></li>
+            <li><a class="nav-link" href="/dashboard/files/new">افزودن فایل جدید</a></li>
           </ul>
         </li>
         <li class="dropdown active">
@@ -57,8 +73,8 @@
         <li class="dropdown active">
           <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>فایل ها</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="/chat.html">تمامی فایل ها</a></li>
-            <li><a class="nav-link" href="/portfolio.html">افزودن فایل جدید</a></li>
+            <li><a class="nav-link" href="/dashboard/files">تمامی فایل ها</a></li>
+            <li><a class="nav-link" href="/dashboard/files/new">افزودن فایل جدید</a></li>
           </ul>
         </li>
       </ul>

@@ -107,4 +107,12 @@ router.post('/auth/login', function (req, res) {
     });
 });
 
+router.post('/auth/exit', (req, res) => {
+    res.cookie('remember_token', '', {expires: new Date(1), path: '/' });
+    res.clearCookie('remember_token', { path: '/' });
+    // Send JSON response
+    res.json({ success: true, message: 'Shoma Az System Kharej Shodid!' });
+});
+
+
 module.exports = router

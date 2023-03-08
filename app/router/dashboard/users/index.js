@@ -19,6 +19,7 @@ router.get('/dashboard/users/list', (req, res) => {
             userinfo = res2[0]
             if (userinfo == null) { return res.redirect('/auth/login') }
             if (userinfo.remember_token !== req.signedCookies.remember_token) { return res.redirect('/auth/login') } else {
+            if (userinfo.group != 'manager') { return res.redirect('/dashboard') }
                 if (req.query.group) {
                     connection.query('SELECT * FROM users WHERE `group` = ?', [req.query.group], function(err, res2) {
                         return res.render('./dashboard/users/list', {userinfo: userinfo, users: res2})
@@ -41,6 +42,7 @@ router.get('/dashboard/users/new', (req, res) => {
             userinfo = res2[0]
             if (userinfo == null) { return res.redirect('/auth/login') }
             if (userinfo.remember_token !== req.signedCookies.remember_token) { return res.redirect('/auth/login') } else {
+            if (userinfo.group != 'manager') { return res.redirect('/dashboard') }
                     return res.render('./dashboard/users/new', {userinfo: userinfo})
             }
         });
@@ -75,6 +77,7 @@ router.post('/dashboard/users/edit', function (req, res) {
             userinfo = res2[0]
             if (userinfo == null) { return res.redirect('/auth/login') }
             if (userinfo.remember_token !== req.signedCookies.remember_token) { return res.redirect('/auth/login') } else {
+            if (userinfo.group != 'manager') { return res.redirect('/dashboard') }
                 if (!req.query.new) {
                     if (req.query.nationalID) {
                         connection.query(`UPDATE users SET nationalID = '${req.body.nationalID}', nationalSerial = '${req.body.nationalSerial}', username = '${req.body.username}', \`group\` = '${grouplabel[req.body.group]}' WHERE nationalID = '${req.query.nationalID}'`)
@@ -123,6 +126,7 @@ router.get('/dashboard/homework', function (req, res) {
             userinfo = res2[0]
             if (userinfo == null) { return res.redirect('/auth/login') }
             if (userinfo.remember_token !== req.signedCookies.remember_token) { return res.redirect('/auth/login') } else {
+            if (userinfo.group != 'manager') { return res.redirect('/dashboard') }
                 return res.json(true)
             }
         });

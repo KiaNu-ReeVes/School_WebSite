@@ -40,7 +40,6 @@ module.exports = class Application {
         app.get('/contact', (req, res) => {
             res.render('contact')
         })
-    
     }
     folderConfig() {
         app.use(require('./router/auth/index'))

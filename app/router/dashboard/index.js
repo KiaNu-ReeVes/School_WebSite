@@ -30,5 +30,6 @@ router.get('/dashboard', (req, res) => {
 })
 
 router.use(require('./users/index'))
+router.use(require('./files/index'))
 
 module.exports = router
