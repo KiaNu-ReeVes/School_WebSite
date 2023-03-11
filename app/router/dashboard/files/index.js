@@ -29,12 +29,10 @@ const storage = multer.diskStorage({
     }
 });
 
-// Init upload
 const upload = multer({
     storage: storage
 }).single('file');
 
-// Route for handling file upload
 router.post('/dashboard/upload', (req, res) => {
     if (req.signedCookies.remember_token) {
         connection.query("SELECT * FROM users WHERE remember_token = ?;", [req.signedCookies.remember_token], function (err, res2) {
@@ -48,7 +46,7 @@ router.post('/dashboard/upload', (req, res) => {
                         if (req.file == undefined) {
                             res.send('Error: No file selected');
                         } else {
-                            res.redirect('/dashboard/files/'+ req.query.folder);
+                            res.redirect('/dashboard/files/new');
                         }
                     }
                 });
@@ -76,7 +74,6 @@ router.get('/dashboard/files/new', (req, res) => {
 });
 
 
-// GET /dashboard/files/
 router.get('/dashboard/files', (req, res) => {
     if (req.signedCookies.remember_token) {
         connection.query("SELECT * FROM users WHERE remember_token = ?;", [req.signedCookies.remember_token], function (err, res2) {
@@ -84,10 +81,9 @@ router.get('/dashboard/files', (req, res) => {
             if (userinfo == null) { return res.redirect('/auth/login') }
             if (userinfo.remember_token !== req.signedCookies.remember_token) { return res.redirect('/auth/login') } else {
             if (userinfo.group != 'manager') { return res.redirect('/dashboard/files/'+userinfo.nationalID) }
-                // Get the list of files in the upload directory
+            
                 const files = fs.readdirSync(uploadDir);
                 
-                // Generate the table rows
                 let tableRows = '';
                 
                 files.forEach(file => {
@@ -102,13 +98,13 @@ router.get('/dashboard/files', (req, res) => {
                   tableRows += `
                     <tr>
                       <td>${file}</td>
+                      <td>${filePath.replace('app\\public', 'http://localhost:3000')}</td>
                       <td>${fileStat.birthtime}</td>
                       <td>${openFolderButton}</td>
                     </tr>
                   `;
                 });
-            
-                // Render the page with the table
+        
                 res.render('./dashboard/files/files', {
                   userinfo: userinfo,
                   tableRows: tableRows
@@ -119,21 +115,24 @@ router.get('/dashboard/files', (req, res) => {
         return res.redirect('/auth/login')
     }
 });
+
 router.get('/dashboard/files/:folderName', (req, res) => {
     if (req.signedCookies.remember_token) {
         connection.query("SELECT * FROM users WHERE remember_token = ?;", [req.signedCookies.remember_token], function (err, res2) {
             userinfo = res2[0]
             if (userinfo == null) { return res.redirect('/auth/login') }
             if (userinfo.remember_token !== req.signedCookies.remember_token) { return res.redirect('/auth/login') } else {
-                const folderName = req.params.folderName; // Get the folder name from the route parameter
+                const folderName = req.params.folderName;
               
-                // Create the path to the folder
                 const folderPath = path.join(uploadDir, folderName);
+                fs.mkdir(folderPath, { recursive: true }, function(err) {
+                    if (err) {
+                        console.error(err);
+                    }
+                });
                 
-                // Get the list of files in the upload directory
                 const files = fs.readdirSync(folderPath);
                 
-                // Generate the table rows
                 let tableRows = '';
                 
                 files.forEach(file => {
@@ -142,7 +141,8 @@ router.get('/dashboard/files/:folderName', (req, res) => {
                 
                   tableRows += `
                     <tr>
-                      <td>${file} (link : ${filePath})</td>
+                      <td>${file}</td>
+                      <td>${filePath.replace('app\\public', 'http://localhost:3000')}</td>
                       <td>${fileStat.birthtime}</td>
                       <td><button class="btn btn-danger" onclick="
                       $.post('/dashboard/files/delete', { fileName: '${folderName}/${file}' })
@@ -157,12 +157,11 @@ router.get('/dashboard/files/:folderName', (req, res) => {
                       .fail(function(jqXHR, textStatus, errorThrown) {
                         alert('Error: ' + errorThrown);
                       });
-                    ">خذف</button></td>
+                    ">حذف</button></td>
                     </tr>
                   `;
                 });
             
-                // Render the page with the table
                 res.render('./dashboard/files/files', {
                     userinfo: userinfo,
                     tableRows: tableRows
@@ -174,21 +173,19 @@ router.get('/dashboard/files/:folderName', (req, res) => {
     }
 });
   
-// POST /dashboard/files/delete
 router.post('/dashboard/files/delete', (req, res) => {
     if (req.signedCookies.remember_token) {
         connection.query("SELECT * FROM users WHERE remember_token = ?;", [req.signedCookies.remember_token], function (err, res2) {
             userinfo = res2[0]
             if (userinfo == null) { return res.redirect('/auth/login') }
             if (userinfo.remember_token !== req.signedCookies.remember_token) { return res.redirect('/auth/login') } else {
-                // Get the file name from the request body
+                
                 const fileName = req.body.fileName;
-                // Delete the file
+                
                 const filePath = path.join(uploadDir, fileName);
               
                 fs.unlinkSync(filePath);
               
-                // Send JSON response
                 res.json({ success: true, message: 'File Ba Movafaghiat Pak Shod!' });
             }
         });

@@ -37,7 +37,7 @@
             <div class="col-12 col-sm-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>بلاگ های مدرسه ثامن</h4>
+                        <h4>لیست تمام تکالیف مدل <%= userinfo.type %></h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -45,26 +45,22 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>تیتر</th>
-                                        <th>توضیح کوتاه</th>
-                                        <th>ای دی</th>
-                                        <th>تاریخ</th>
-                                        <th>دکمه ها</th>
+                                        <th>کلاس</th>
+                                        <th>مدل</th>
+                                        <th>توضیح</th>
+                                        <th>دکمه</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  <% for(var i=0; i < blogs.length; i++) {%>
+                                  <% for(var i=0; i < homeworks.length; i++) {%>
                                     <tr>
                                         <td><%= i+1 %></td>
-                                        <td><%= blogs[i].title %></td>
-                                        <td><%= blogs[i].about %></td>
-                                        <td><%= blogs[i].id %></td>
-                                        <td><%= blogs[i].day %> <%= blogs[i].month %></td>
+                                        <td><%= homeworks[i].class %></td>
+                                        <td><%= homeworks[i].type %></td>
+                                        <td><%= homeworks[i].description %></td>
                                         <td>
-                                          <form action="/dashboard/blogs/delete?id=<%= blogs[i].id %>" method="POST">
-                                            <a href="/blog/<%= blogs[i].id %>" class="btn btn-success">نمایش</a>
-                                            <a href="/dashboard/blogs/edit?id=<%= blogs[i].id %>" class="btn btn-primary">تغییر</a>
-                                              <button class="btn btn-danger">حذف</button>
+                                          <form action="/dashboard/homework/delete?id=<%= homeworks[i].id %>" method="POST">
+                                            <button class="btn btn-danger">حذف</button>
                                           </form>
                                         </td>
                                     </tr>

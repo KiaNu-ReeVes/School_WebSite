@@ -88,18 +88,6 @@ router.post('/dashboard/blogs/edit', function (req, res) {
     }
 });
 
-const makeid = function (lengthh) {
-    let length = lengthh
-    var result = '';
-    var characters = '0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() *
-            charactersLength));
-    }
-    return result;
-}
-
 router.get('/dashboard/blogs/new', (req, res) => {
     if (req.signedCookies.remember_token) {
         connection.query("SELECT * FROM users WHERE remember_token = ?;", [req.signedCookies.remember_token], function (err, res2) {

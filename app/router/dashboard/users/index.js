@@ -120,19 +120,5 @@ router.post('/dashboard/users/delete', function (req, res) {
     }
 });
 
-router.get('/dashboard/homework', function (req, res) {
-    if (req.signedCookies.remember_token) {
-        connection.query("SELECT * FROM users WHERE remember_token = ?;", [req.signedCookies.remember_token], function (err, res2) {
-            userinfo = res2[0]
-            if (userinfo == null) { return res.redirect('/auth/login') }
-            if (userinfo.remember_token !== req.signedCookies.remember_token) { return res.redirect('/auth/login') } else {
-            if (userinfo.group != 'manager') { return res.redirect('/dashboard') }
-                return res.json(true)
-            }
-        });
-    } else {
-        return res.redirect('/auth/login')
-    }
-});
 
 module.exports = router

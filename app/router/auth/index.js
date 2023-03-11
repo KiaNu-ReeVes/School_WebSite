@@ -30,16 +30,10 @@ router.get('/auth', (req, res) => {
 
 
 router.get('/auth/register', (req, res) => {
-    // connection.query('SELECT * FROM blogs', function(err, res2) {
-    //     res.render('blog', {blogs: res2})
-    // });
     res.render('./auth/register', {messages: []})
 })
 
 router.get('/auth/login', (req, res) => {
-    // connection.query('SELECT * FROM blogs', function(err, res2) {
-    //     res.render('blog', {blogs: res2})
-    // });
     res.render('./auth/login', {messages: []})
 })
 
@@ -110,7 +104,7 @@ router.post('/auth/login', function (req, res) {
 router.post('/auth/exit', (req, res) => {
     res.cookie('remember_token', '', {expires: new Date(1), path: '/' });
     res.clearCookie('remember_token', { path: '/' });
-    // Send JSON response
+    
     res.json({ success: true, message: 'Shoma Az System Kharej Shodid!' });
 });
 

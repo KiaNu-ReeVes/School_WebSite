@@ -35,7 +35,7 @@
           </ul>
         </li>
         <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>فایل ها</span></a>
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="folder"></i><span>فایل ها</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="/dashboard/files">تمامی فایل ها</a></li>
             <li><a class="nav-link" href="/dashboard/files/new">افزودن فایل جدید</a></li>
@@ -56,11 +56,33 @@
             <li><a class="nav-link" href="/dashboard/users/list?group=teacher">لیست معلمین</a></li>
             <li><a class="nav-link" href="/dashboard/users/list?group=manager">لیست معاونین</a></li>
             <li><a class="nav-link" href="/dashboard/users/new">افزودن اکانت</a></li>
-            <li><a class="nav-link" href="/dashboard/homework">تکالیف</a></li>
+          </ul>
+        </li>
+        <li class="dropdown active">
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>تکالیف</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="/dashboard/homework">تمامی تکالیف</a></li>
+            <li><a class="nav-link" href="/dashboard/homework/new">افزودن تکلیف جدید</a></li>
           </ul>
         </li>
       </ul>
     <% } else if (userinfo.group == 'teacher') { %>
+      <ul class="sidebar-menu">
+        <li class="menu-header">معلم</li>
+        <li class="dropdown active">
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="home"></i><span>پیشخوان</span></a>
+          <ul class="dropdown-menu">
+            <li class="active"><a class="nav-link" href="/dashboard">خانه</a></li>
+          </ul>
+        </li>
+        <li class="dropdown active">
+          <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>تکالیف</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="/dashboard/homework">تمامی تکالیف</a></li>
+            <li><a class="nav-link" href="/dashboard/homework/new">افزودن تکلیف جدید</a></li>
+          </ul>
+        </li>
+      </ul>
     <% } else if (userinfo.group == 'student') { %>
       <ul class="sidebar-menu">
         <li class="menu-header">دانش اموز</li>

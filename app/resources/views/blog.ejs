@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"> -->
 
     <!-- Libraries Stylesheet -->
     <link href="/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -72,7 +72,7 @@
                 <% for(var i=0; i < blogs.length; i++) { %>
                     <div class="col-lg-4 col-md-6 mb-5">
                         <div class="position-relative mb-4">
-                            <img class="img-fluid rounded w-100" src="<%= blogs[i].picture %>" alt="">
+                            <img class="img-fluid rounded w-100" style="width: 200px;height: 150px;"  src="<%= blogs[i].picture %>" alt="">
                             <div class="blog-date">
                                 <h4 class="font-weight-bold mb-n1"><%= blogs[i].day %></h4>
                                 <small class="text-white text-uppercase"><%= blogs[i].month %></small>
