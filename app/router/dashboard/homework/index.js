@@ -30,7 +30,7 @@ router.get('/dashboard/homework/list', function (req, res) {
             userinfo = res2[0]
             if (userinfo == null) { return res.redirect('/auth/login') }
             if (userinfo.remember_token !== req.signedCookies.remember_token) { return res.redirect('/auth/login') } else {
-                if (userinfo.type === null) {
+                if (userinfo.type === "") {
                   connection.query('SELECT * FROM homeworks', function(err, res2) {
                     res.render('./dashboard/homework/list', {
                       userinfo: userinfo,

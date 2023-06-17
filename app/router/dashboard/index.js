@@ -17,11 +17,11 @@ router.get('/dashboard', (req, res) => {
                     connection.query('SELECT * FROM users WHERE `group` = ?', ['student'], function(err, res3) {
                         connection.query('SELECT * FROM users WHERE `group` = ?;', ['teacher'], function(err, res4) {
                             connection.query('SELECT * FROM users WHERE `group` = ?;', ['manager'], function(err, res5) {
-                                if (userinfo.class) {
+                                if (userinfo.class != "") {
                                     connection.query('SELECT * FROM homeworks WHERE class = ?', [userinfo.class], function(err, res6) {
                                         return res.render('./dashboard/index', {userinfo: userinfo, blogs: res2, students: res3, teachers: res4, managers: res5, homeworks: res6})
                                     });
-                                } else if (userinfo.type) {
+                                } else if (userinfo.type != "") {
                                     connection.query('SELECT * FROM homeworks WHERE type = ?', [userinfo.type], function(err, res6) {
                                         return res.render('./dashboard/index', {userinfo: userinfo, blogs: res2, students: res3, teachers: res4, managers: res5, homeworks: res6})
                                     });

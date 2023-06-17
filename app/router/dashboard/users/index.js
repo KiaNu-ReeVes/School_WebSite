@@ -80,15 +80,39 @@ router.post('/dashboard/users/edit', function (req, res) {
             if (userinfo.group != 'manager') { return res.redirect('/dashboard') }
                 if (!req.query.new) {
                     if (req.query.nationalID) {
-                        connection.query(`UPDATE users SET nationalID = '${req.body.nationalID}', nationalSerial = '${req.body.nationalSerial}', username = '${req.body.username}', \`group\` = '${grouplabel[req.body.group]}' WHERE nationalID = '${req.query.nationalID}'`)
+                        var classValue = "";
+                        var typeValue = "";
+                        if(grouplabel[req.body.group] == 'student') {
+                          var classValue = req.body.class || "";
+                        } else {
+                            var classValue = "";
+                        }
+                        if(grouplabel[req.body.group] == 'teacher') {
+                          var typeValue = req.body.type || "";
+                        } else {
+                          var typeValue = "";
+                        }
+                      
+                        connection.query(`UPDATE users SET nationalID = '${req.body.nationalID}', nationalSerial = '${req.body.nationalSerial}', username = '${req.body.username}', \`group\` = '${grouplabel[req.body.group]}', class = '${classValue}', type = '${typeValue}' WHERE nationalID = '${req.query.nationalID}'`)
                         return res.redirect('/dashboard/users/list')
                     } else {
                         return res.redirect('/dashboard/users/list')
                     }
                 } else {
-                    connection.query("INSERT INTO users (nationalID,nationalSerial,username,`group`) VALUES (?,?,?,?);", [req.body.nationalID, req.body.nationalSerial ,req.body.username ,grouplabel[req.body.group]], function (err, rese) {
-                        return res.redirect('/dashboard/users/list')
-                    })
+                    if(grouplabel[req.body.group] == 'student') {
+                      var classValue = req.body.class || "";
+                    } else {
+                        var classValue = "";
+                    }
+                    if(grouplabel[req.body.group] == 'teacher') {
+                      var typeValue = req.body.type || "";
+                    } else {
+                      var typeValue = "";
+                    }
+                  
+                    connection.query("INSERT INTO users (nationalID,nationalSerial,username,`group`, class, type) VALUES (?,?,?,?,?,?);", [req.body.nationalID, req.body.nationalSerial ,req.body.username ,grouplabel[req.body.group], classValue, typeValue], function (err, rese) {
+                      return res.redirect('/dashboard/users/list');
+                    });
                 }
             }
         });
