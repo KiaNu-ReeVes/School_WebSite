@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const blockchain = require("kiansql_blockchain");
 const connection = blockchain.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "school_website",
+  host: process.env.MYSQL_HOST,
+  port: process.env.MYSQL_PORT,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
 });
 const multer = require("multer");
 const fs = require("fs");
