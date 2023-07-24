@@ -1,14 +1,19 @@
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <a href="/"> <img alt="تصویر" src="/assets/img/logored.png" class="header-logo"></a>
+      <a href="/">
+        <img alt="تصویر" src="/assets/img/logored.png" class="header-logo"
+      /></a>
     </div>
     <div class="sidebar-user">
       <div class="sidebar-user-details">
         <div class="user-name"><%= userinfo.username %></div>
         <div class="user-role text-uppercase"><%= userinfo.group %></div>
-        <br>
-        <div class="btn btn btn-outline-danger" style="border-radius: 20px;width: 50%;" onclick="
+        <br />
+        <div
+          class="btn btn btn-outline-danger"
+          style="border-radius: 20px; width: 50%"
+          onclick="
           $.post('/auth/exit', { })
           .done(function(response) {
             if (response.success) {
@@ -21,85 +26,212 @@
           .fail(function(jqXHR, textStatus, errorThrown) {
             alert('Error: ' + errorThrown);
           });
-        ">خروج</div>
-        <br>
+        "
+        >
+          خروج
+        </div>
+        <br />
       </div>
     </div>
     <% if (userinfo.group == 'manager') { %>
-      <ul class="sidebar-menu">
-        <li class="menu-header">مدیریت</li>
-        <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="home"></i><span>پیشخوان</span></a>
-          <ul class="dropdown-menu">
-            <li class="active"><a class="nav-link" href="/dashboard">خانه</a></li>
-          </ul>
-        </li>
-        <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="folder"></i><span>فایل ها</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="/dashboard/files">تمامی فایل ها</a></li>
-            <li><a class="nav-link" href="/dashboard/files/new">افزودن فایل جدید</a></li>
-          </ul>
-        </li>
-        <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="briefcase"></i><span>بلاگ ها</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="/dashboard/blogs">تمامی بلاگ ها</a></li>
-            <li><a class="nav-link" href="/dashboard/blogs/new">افزودن بلاگ جدید</a></li>
-          </ul>
-        </li>
-        <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="user"></i><span>کادر مدرسه</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="/dashboard/users/list">لیست تمامی اکانت ها</a></li>
-            <li><a class="nav-link" href="/dashboard/users/list?group=student">لیست دانش اموزان</a></li>
-            <li><a class="nav-link" href="/dashboard/users/list?group=teacher">لیست معلمین</a></li>
-            <li><a class="nav-link" href="/dashboard/users/list?group=manager">لیست معاونین</a></li>
-            <li><a class="nav-link" href="/dashboard/users/new">افزودن اکانت</a></li>
-          </ul>
-        </li>
-        <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>تکالیف</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="/dashboard/homework">تمامی تکالیف</a></li>
-            <li><a class="nav-link" href="/dashboard/homework/new">افزودن تکلیف جدید</a></li>
-          </ul>
-        </li>
-      </ul>
+    <ul class="sidebar-menu">
+      <li class="menu-header">مدیریت</li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="home"></i><span>پیشخوان</span></a
+        >
+        <ul class="dropdown-menu">
+          <li class="active"><a class="nav-link" href="/dashboard">خانه</a></li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="file"></i><span>اموزش</span></a
+        >
+        <ul class="dropdown-menu">
+          <li>
+            <a
+              class="nav-link"
+              style="cursor: pointer"
+              onclick="alert('مشکل در وصل شدن به شرکت برگزار کننده')"
+              >برگزاری کلاس انلاین</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/exam/list">
+              ازمون های موجود
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/exam/new">
+              برگزاری ازمون انلاین
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="folder"></i><span>فایل ها</span></a
+        >
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="/dashboard/files">تمامی فایل ها</a></li>
+          <li>
+            <a class="nav-link" href="/dashboard/files/new">افزودن فایل جدید</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="briefcase"></i><span>بلاگ ها</span></a
+        >
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="/dashboard/blogs">تمامی بلاگ ها</a></li>
+          <li>
+            <a class="nav-link" href="/dashboard/blogs/new">افزودن بلاگ جدید</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="user"></i><span>کادر مدرسه</span></a
+        >
+        <ul class="dropdown-menu">
+          <li>
+            <a class="nav-link" href="/dashboard/users/list"
+              >لیست تمامی اکانت ها</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/users/list?group=student"
+              >لیست دانش اموزان</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/users/list?group=teacher"
+              >لیست معلمین</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/users/list?group=manager"
+              >لیست معاونین</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/users/new">افزودن اکانت</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="file"></i><span>تکالیف</span></a
+        >
+        <ul class="dropdown-menu">
+          <li>
+            <a class="nav-link" href="/dashboard/homework">تمامی تکالیف</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/homework/new"
+              >افزودن تکلیف جدید</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
     <% } else if (userinfo.group == 'teacher') { %>
-      <ul class="sidebar-menu">
-        <li class="menu-header">معلم</li>
-        <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="home"></i><span>پیشخوان</span></a>
-          <ul class="dropdown-menu">
-            <li class="active"><a class="nav-link" href="/dashboard">خانه</a></li>
-          </ul>
-        </li>
-        <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>تکالیف</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="/dashboard/homework">تمامی تکالیف</a></li>
-            <li><a class="nav-link" href="/dashboard/homework/new">افزودن تکلیف جدید</a></li>
-          </ul>
-        </li>
-      </ul>
+    <ul class="sidebar-menu">
+      <li class="menu-header">معلم</li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="home"></i><span>پیشخوان</span></a
+        >
+        <ul class="dropdown-menu">
+          <li class="active"><a class="nav-link" href="/dashboard">خانه</a></li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="file"></i><span>اموزش</span></a
+        >
+        <ul class="dropdown-menu">
+          <li>
+            <a
+              class="nav-link"
+              style="cursor: pointer"
+              onclick="alert('مشکل در وصل شدن به شرکت برگزار کننده')"
+              >برگزاری کلاس انلاین</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/exam/list">
+              ازمون های موجود
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/exam/new">
+              برگزاری ازمون انلاین
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="file"></i><span>تکالیف</span></a
+        >
+        <ul class="dropdown-menu">
+          <li>
+            <a class="nav-link" href="/dashboard/homework">تمامی تکالیف</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/homework/new"
+              >افزودن تکلیف جدید</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
     <% } else if (userinfo.group == 'student') { %>
-      <ul class="sidebar-menu">
-        <li class="menu-header">دانش اموز</li>
-        <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="home"></i><span>پیشخوان</span></a>
-          <ul class="dropdown-menu">
-            <li class="active"><a class="nav-link" href="/dashboard">خانه</a></li>
-          </ul>
-        </li>
-        <li class="dropdown active">
-          <a href="/#" class="nav-link has-dropdown"><i data-feather="file"></i><span>فایل ها</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="/dashboard/files">تمامی فایل ها</a></li>
-            <li><a class="nav-link" href="/dashboard/files/new">افزودن فایل جدید</a></li>
-          </ul>
-        </li>
-      </ul>
+    <ul class="sidebar-menu">
+      <li class="menu-header">دانش اموز</li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="home"></i><span>پیشخوان</span></a
+        >
+        <ul class="dropdown-menu">
+          <li class="active"><a class="nav-link" href="/dashboard">خانه</a></li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="file"></i><span>اموزش</span></a
+        >
+        <ul class="dropdown-menu">
+          <li>
+            <a
+              class="nav-link"
+              style="cursor: pointer"
+              onclick="alert('هیچ کلاس فعالی برای شما وجود ندارد')"
+              >شرکت در کلاس انلاین</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" href="/dashboard/exam">
+              شرکت در ازمون انلاین
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a href="/#" class="nav-link has-dropdown"
+          ><i data-feather="file"></i><span>فایل ها</span></a
+        >
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="/dashboard/files">تمامی فایل ها</a></li>
+          <li>
+            <a class="nav-link" href="/dashboard/files/new">افزودن فایل جدید</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
     <% } %>
   </aside>
 </div>

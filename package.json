@@ -19,7 +19,7 @@
     "express-validator": "^6.15.0",
     "fs": "^0.0.1-security",
     "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.1.2",
+    "kiansql_blockchain": "^1.0.0",
     "nodemon": "^2.0.20"
   }
 }
